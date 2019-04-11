@@ -23,13 +23,7 @@ public class ExceptionController {
             ResourceNotFoundException exception, WebRequest webRequest){
 
         log.info("ResourceNotFoundException has been properly handled !");
-
-        ExceptionRestResponse exceptionRestResponse = ExceptionRestResponse.builder()
-                .timestamp(new Date())
-                .message(exception.getMessage())
-                .details(webRequest.getDescription(false))
-                .build();
-        return new ResponseEntity<>(exceptionRestResponse, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(generateRestExcResponse(exception, webRequest), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(EmptyResultDataAccessException.class)
@@ -37,13 +31,7 @@ public class ExceptionController {
             EmptyResultDataAccessException exception, WebRequest webRequest){
 
         log.info("EmptyResultDataAccessException has been properly handled !");
-
-        ExceptionRestResponse exceptionRestResponse = ExceptionRestResponse.builder()
-                .timestamp(new Date())
-                .message(exception.getMessage())
-                .details(webRequest.getDescription(false))
-                .build();
-        return new ResponseEntity<>(exceptionRestResponse, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(generateRestExcResponse(exception, webRequest), HttpStatus.NOT_FOUND);
     }
 
 
@@ -52,13 +40,16 @@ public class ExceptionController {
             NumberFormatException exception, WebRequest webRequest){
 
         log.info("NumberFormatException has been properly handled !");
+        return new ResponseEntity<>(generateRestExcResponse(exception, webRequest), HttpStatus.BAD_REQUEST);
+    }
 
-        ExceptionRestResponse exceptionRestResponse = ExceptionRestResponse.builder()
+
+    private ExceptionRestResponse generateRestExcResponse(Exception exception, WebRequest webRequest){
+        return ExceptionRestResponse.builder()
                 .timestamp(new Date())
                 .message(exception.getMessage())
                 .details(webRequest.getDescription(false))
                 .build();
-        return new ResponseEntity<>(exceptionRestResponse, HttpStatus.BAD_REQUEST);
     }
 
 }
