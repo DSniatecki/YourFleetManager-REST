@@ -1,6 +1,5 @@
 package com.dsniatecki.yourfleetmanager.dto.contactdetails;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
