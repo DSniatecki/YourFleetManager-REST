@@ -2,13 +2,15 @@ package com.dsniatecki.yourfleetmanager.controllers;
 
 
 import com.dsniatecki.yourfleetmanager.dto.car.CarDTO;
-import com.dsniatecki.yourfleetmanager.dto.department.DepartmentBasicDTO;
 import com.dsniatecki.yourfleetmanager.services.car.CarService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/companies/{companyId}/departments/{departmentId}/cars")
+@Api(description="controller responsible for operations on the car object")
 class CarController {
 
     private CarService carService;

@@ -10,6 +10,7 @@ import com.dsniatecki.yourfleetmanager.mappers.department.DepartmentPartialMappe
 import com.dsniatecki.yourfleetmanager.repositories.CompanyRepository;
 import com.dsniatecki.yourfleetmanager.repositories.DepartmentRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -25,6 +26,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    @Transactional
     public DepartmentDTO getWithCarsById(Long id) {
         Optional<Department> departmentOptional = departmentRepository.findById(id);
         checkIsNotPresent(departmentOptional, id);

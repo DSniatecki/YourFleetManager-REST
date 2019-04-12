@@ -4,12 +4,16 @@ package com.dsniatecki.yourfleetmanager.controllers;
 import com.dsniatecki.yourfleetmanager.dto.department.DepartmentBasicDTO;
 import com.dsniatecki.yourfleetmanager.dto.department.DepartmentDTO;
 import com.dsniatecki.yourfleetmanager.services.department.DepartmentService;
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/v1/companies/{companyId}/departments")
+@Api(description="controller responsible for operations on the department object")
 class DepartmentController {
 
     private DepartmentService departmentService;

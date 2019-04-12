@@ -4,6 +4,7 @@ import com.dsniatecki.yourfleetmanager.dto.company.CompanyBasicDTO;
 import com.dsniatecki.yourfleetmanager.dto.company.CompanyDepartmentsDTO;
 import com.dsniatecki.yourfleetmanager.dto.company.CompanyListElementDTO;
 import com.dsniatecki.yourfleetmanager.services.company.CompanyService;
+import io.swagger.annotations.Api;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -15,6 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1/companies")
+@Api(description="controller responsible for operations on the company object")
 class CompanyController {
 
     private static final int DEFAULT_PAGE_SIZE=20;
