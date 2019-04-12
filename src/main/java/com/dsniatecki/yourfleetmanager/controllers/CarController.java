@@ -37,13 +37,10 @@ class CarController {
         return carService.saveWithDepartment(carDTO, Long.valueOf(companyId));
     }
 
-
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public CarDTO updatePartialy(@RequestBody CarDTO carDTO, @PathVariable String id ){
         return carService.updatePartiaL(carDTO, Long.valueOf(id));
     }
-
-
 
 }

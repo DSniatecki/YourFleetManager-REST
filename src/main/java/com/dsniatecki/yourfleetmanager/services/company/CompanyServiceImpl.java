@@ -26,7 +26,6 @@ public class CompanyServiceImpl implements CompanyService {
         this.companyRepository = companyRepository;
     }
 
-
     @Override
     public CompanyBasicDTO getBasicById(Long id){
         Optional<Company> companyOptional =  companyRepository.findById(id);
@@ -48,7 +47,6 @@ public class CompanyServiceImpl implements CompanyService {
         List<CompanyListElementDTO> listCompanies = new ArrayList<>();
         companies.forEach(company ->
                 listCompanies.add(CompanyMapper.INSTANCE.companyToCompanyListElementDTO(company)));
-
         return listCompanies;
     }
 

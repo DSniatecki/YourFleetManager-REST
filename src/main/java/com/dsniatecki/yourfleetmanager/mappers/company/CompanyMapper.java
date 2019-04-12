@@ -13,12 +13,12 @@ import org.mapstruct.factory.Mappers;
 public interface CompanyMapper {
      CompanyMapper INSTANCE = Mappers.getMapper(CompanyMapper.class);
 
+     CompanyBasicDTO companyToCompanyBasicDTO(Company company);
+     Company companyBasicDTOToCompany(CompanyBasicDTO companyBasicDTO);
+
      @Mappings({
              @Mapping(target="country", source="company.address.country"),
              @Mapping(target="city", source = "company.address.city")})
      CompanyListElementDTO companyToCompanyListElementDTO(Company company);
-     CompanyBasicDTO companyToCompanyBasicDTO(Company company);
      CompanyDepartmentsDTO companyToCompanyDepartmentsDTO(Company company);
-
-     Company companyBasicDTOToCompany(CompanyBasicDTO companyBasicDTO);
 }

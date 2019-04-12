@@ -20,7 +20,6 @@ public class ContactDetailsPartialMapper {
                 contactDetails.setEmailAddress(contactDetailsDTO.getEmailAddress());
             }
         }
-
     }
 
 }

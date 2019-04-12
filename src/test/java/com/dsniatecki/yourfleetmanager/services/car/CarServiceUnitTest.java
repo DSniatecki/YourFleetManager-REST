@@ -38,42 +38,37 @@ class CarServiceUnitTest {
     @Test
     @DisplayName("Test: getById() - Success")
     void getByIdTest() throws Exception{
+
         Car car = generateCar();
 
         doReturn(Optional.of(car)).when(carRepository).findById(1L);
-
         CarDTO carDTO = carService.getById(1L);
 
         Assertions.assertNotNull(carDTO);
-
         Assertions.assertEquals(carDTO.getId(), car.getId());
         Assertions.assertEquals(carDTO.getVehicleResponder().getId(), car.getVehicleResponder().getId());
         Assertions.assertEquals(carDTO.getVehicleResponder().getContactDetails().getId(),
-                car.getVehicleResponder().getContactDetails().getId());
-
-
+                                 car.getVehicleResponder().getContactDetails().getId());
     }
 
     @Test
     @DisplayName("Test: saveWithDepartmentTest() - Success")
     void saveWithDepartmentTest() throws Exception{
+
         CarDTO carDTO = CarMapper.INSTANCE.carToCarDTO(generateCar());
         Car car = generateCar();
 
         doReturn(Optional.of(generateDepartment())).when(departmentRepository).findById(any());
         doReturn(car).when(carRepository).save(any());
-
         CarDTO saveCar = carService.saveWithDepartment(carDTO, 10L);
 
         Assertions.assertNotNull(saveCar);
-
         Assertions.assertEquals(saveCar.getId(), car.getId());
         Assertions.assertEquals(carDTO.getBrand(), car.getBrand());
         Assertions.assertEquals(carDTO.getModel(), car.getModel());
         Assertions.assertEquals(saveCar.getVehicleResponder().getId(), car.getVehicleResponder().getId());
         Assertions.assertEquals(saveCar.getVehicleResponder().getContactDetails().getId(),
-                car.getVehicleResponder().getContactDetails().getId());
-
+                                 car.getVehicleResponder().getContactDetails().getId());
 
     }
 
@@ -81,25 +76,21 @@ class CarServiceUnitTest {
     @Test
     @DisplayName("Test: updatePartialTest() - Success")
     void updatePartialTest() throws Exception{
-        CarDTO carDTO = CarMapper.INSTANCE.carToCarDTO(generateCar());
 
+        CarDTO carDTO = CarMapper.INSTANCE.carToCarDTO(generateCar());
         Car car = generateCar();
 
         doReturn(Optional.of(car)).when(carRepository).findById(1L);
         doReturn(car).when(carRepository).save(any());
-
         CarDTO updatedCar = carService.updatePartiaL(carDTO, 1L);
 
         Assertions.assertNotNull(updatedCar);
-
         Assertions.assertEquals(updatedCar.getId(), car.getId());
         Assertions.assertEquals(updatedCar.getBrand(), car.getBrand());
         Assertions.assertEquals(updatedCar.getModel(), car.getModel());
         Assertions.assertEquals(updatedCar.getVehicleResponder().getId(), car.getVehicleResponder().getId());
         Assertions.assertEquals(updatedCar.getVehicleResponder().getContactDetails().getId(),
-                car.getVehicleResponder().getContactDetails().getId());
-
-
+                                 car.getVehicleResponder().getContactDetails().getId());
     }
 
 
@@ -130,9 +121,7 @@ class CarServiceUnitTest {
         car.setBrand("FunnyCar");
         car.setModel("FunnyModel");
         car.setRegistrationNumber("JAVA 12");
-
         department.addCar(car);
-
         return department;
     }
 

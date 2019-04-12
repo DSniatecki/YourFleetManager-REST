@@ -21,7 +21,6 @@ public class Department {
     @Column(name = "c_d_name")
     private String name;
 
-
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="contact_details_id")
     private ContactDetails contactDetails;
@@ -48,4 +47,5 @@ public class Department {
         this.contactDetails = contactDetails;
         this.company = company;
     }
+
 }

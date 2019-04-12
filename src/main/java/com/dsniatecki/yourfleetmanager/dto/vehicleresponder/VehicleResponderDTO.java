@@ -16,4 +16,5 @@ public class VehicleResponderDTO {
     public VehicleResponderDTO(){
         this.contactDetails = new ContactDetailsDTO();
     }
+
 }

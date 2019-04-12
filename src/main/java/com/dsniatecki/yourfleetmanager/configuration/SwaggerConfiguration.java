@@ -27,7 +27,7 @@ class SwaggerConfiguration extends WebMvcConfigurationSupport {
                 .apis(RequestHandlerSelectors.any())
                 .paths(Predicates.not(PathSelectors.regex("/error.*")))
                 .build()
-                .pathMapping("/swagger/");
+                .pathMapping("/");
     }
 
     @Override
@@ -37,21 +37,17 @@ class SwaggerConfiguration extends WebMvcConfigurationSupport {
 
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
-
     }
 
     private ApiInfo metaData(){
         Contact contact =
-                new Contact("DSniatecki", "https://github.com/DSniatecki","damian.sniatecki@gmail.com");
+                new Contact("DSniatecki", "https://github.com/DSniatecki", "damian.sniatecki@gmail.com");
 
         return new ApiInfo(
                 "YourFleetManager V2 REST",
                 "REST web service created with Spring Boot designed to manage a fleet of vehicles.",
-                "v1.0",
-                "",
-                contact,
-                "",
-                "",
+                "v1.0", "",
+                contact, "", "",
                 new ArrayList<>());
     }
 

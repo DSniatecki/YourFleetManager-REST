@@ -40,6 +40,7 @@ class CompanyServiceImplUnitTest {
     @Test
     @DisplayName("Test: getBasicById - Success")
     void getBasicByIdSuccess() throws Exception{
+
         Company company = generateCompany();
 
         doReturn(Optional.of(company)).when(companyRepository).findById(1L);
@@ -52,7 +53,7 @@ class CompanyServiceImplUnitTest {
         Assertions.assertEquals(companyBasicDTO.getAddress().getCountry(), company.getAddress().getCountry());
         Assertions.assertEquals(companyBasicDTO.getContactDetails().getId(), company.getContactDetails().getId());
         Assertions.assertEquals(companyBasicDTO.getContactDetails().getTelephoneNumber(),
-                company.getContactDetails().getTelephoneNumber());
+                                 company.getContactDetails().getTelephoneNumber());
 
     }
 
@@ -69,10 +70,10 @@ class CompanyServiceImplUnitTest {
     @Test
     @DisplayName("Test getAllAsListElements() - Success")
     void getAllAsListElementsTest() throws Exception{
+
         List<Company> companyList = generateCompanyList();
 
         doReturn(companyList).when(companyRepository).findAll();
-
         List<CompanyListElementDTO> returnedList = companyService.getAllAsListElements();
 
         Assertions.assertNotNull(returnedList.get(0));
@@ -89,41 +90,43 @@ class CompanyServiceImplUnitTest {
     @Test
     @DisplayName("Test getWithDepartments() - Success")
     void getWithDepartmentsTest() throws Exception{
+
         Company company = generateCompany();
 
         doReturn(Optional.of(company)).when(companyRepository).findById(1L);
-
         CompanyDepartmentsDTO returnedCompany = companyService.getWithDepartments(1L);
 
         Assertions.assertNotNull(returnedCompany);
         Assertions.assertEquals(returnedCompany.getId(), company.getId());
         Assertions.assertEquals(returnedCompany.getName(), company.getName());
         Assertions.assertEquals(returnedCompany.getDepartments().get(0).getId(),
-                company.getDepartments().get(0).getId());
+                                 company.getDepartments().get(0).getId());
         Assertions.assertEquals(returnedCompany.getDepartments().get(0).getName(),
-                company.getDepartments().get(0).getName());
+                                 company.getDepartments().get(0).getName());
     }
 
     @Test
     @DisplayName("Test getPageOfListElements")
     void getPageOfListElementsTest() throws Exception {
+
         Page<Company> companyPage = new PageImpl<>(generateCompanyList());
+
         doReturn(companyPage).when(companyRepository).findAll(Pageable.unpaged());
         Page<CompanyListElementDTO> returnedPage = companyService.getPageOfListElements(Pageable.unpaged());
 
         Assertions.assertNotNull(returnedPage.getContent().get(0));
         Assertions.assertNotNull(returnedPage.getContent().get(1));
-
         Assertions.assertEquals(returnedPage.getTotalElements(), companyPage.getTotalElements());
-        Assertions.assertEquals(returnedPage.getContent().get(0).getId(),  companyPage.getContent().get(0).getId());
-        Assertions.assertEquals(returnedPage.getContent().get(1).getId(),  companyPage.getContent().get(1).getId());
-        Assertions.assertEquals(returnedPage.getContent().get(0).getCountry(),  companyPage.getContent().get(0).getAddress().getCountry());
-        Assertions.assertEquals(returnedPage.getContent().get(1).getName(),  companyPage.getContent().get(1).getName());
+        Assertions.assertEquals(returnedPage.getContent().get(0).getId(), companyPage.getContent().get(0).getId());
+        Assertions.assertEquals(returnedPage.getContent().get(1).getId(), companyPage.getContent().get(1).getId());
+        Assertions.assertEquals(returnedPage.getContent().get(0).getCountry(),
+                                    companyPage.getContent().get(0).getAddress().getCountry());
+        Assertions.assertEquals(returnedPage.getContent().get(1).getName(),
+                                    companyPage.getContent().get(1).getName());
     }
 
 
     private Company generateCompany(){
-
         Company company = new Company();
         company.setId(1L);
         company.setName("company");
@@ -138,24 +141,19 @@ class CompanyServiceImplUnitTest {
         department.getContactDetails().setId(19L);
         department.getContactDetails().setTelephoneNumber("555 555 555");
         company.addDepartment(department);
-
         return company;
     }
 
     private List<Company> generateCompanyList(){
-
         Company company1 = new Company();
         company1.setId(1L);
         company1.setName("company");
         company1.getAddress().setCity("Wrolcaw");
-
         Company company2 = new Company();
         company2.setId(11L);
         company2.setName("company2");
         company2.getAddress().setCity("Wrolcaw2");
-
         return Arrays.asList(company1,company2);
     }
-
 
 }

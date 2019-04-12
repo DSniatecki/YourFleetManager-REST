@@ -42,6 +42,7 @@ class CompanyControllerUnitTest {
     @Test
     @DisplayName("Test retrieveBasic Success")
     void retriveBasicSuccess() throws Exception {
+
         CompanyBasicDTO company = new CompanyBasicDTO();
         company.setId(1L);
         company.setName("FunnyCompany");
@@ -69,6 +70,7 @@ class CompanyControllerUnitTest {
     @Test
     @DisplayName("Test retrieveList Success")
     void retriveList() throws Exception{
+
         CompanyListElementDTO company1 = new CompanyListElementDTO();
         company1.setId(1L);
         company1.setName("FunnyCompany1");
@@ -80,7 +82,6 @@ class CompanyControllerUnitTest {
         company2.setName("FunnyCompany1");
         company2.setCountry("JavaWorld2");
         company2.setCity("JavaLand2");
-
 
         doReturn(Arrays.asList(company1, company2)).when(companyService).getAllAsListElements();
 
@@ -166,8 +167,8 @@ class CompanyControllerUnitTest {
     private String convertToJson(Object object){
         try {
             return new ObjectMapper().writeValueAsString(object);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (Exception exc) {
+            throw new RuntimeException(exc);
         }
 
     }

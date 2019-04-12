@@ -12,6 +12,7 @@ class CarPartialMapperUnitTest {
 
     @Test
     void carDTOToCarTest() throws Exception{
+
         CarDTO carDTO = new CarDTO();
         carDTO.setBrand("SuperCar");
         carDTO.setProductionYear(2008);
@@ -35,7 +36,6 @@ class CarPartialMapperUnitTest {
         Assertions.assertSame(car.getProductionYear(), carDTO.getProductionYear());
         Assertions.assertSame(car.getVehicleResponder().getId(), 20L);
         Assertions.assertEquals(car.getVehicleResponder().getFirstName(), "Damian");
-
     }
 
 }

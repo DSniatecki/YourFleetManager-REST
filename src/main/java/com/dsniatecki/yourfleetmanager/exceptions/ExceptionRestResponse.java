@@ -10,7 +10,9 @@ import java.util.Date;
 @Setter
 @Builder
 public class ExceptionRestResponse {
+
     private Date timestamp;
     private String message;
     private String details;
+
 }

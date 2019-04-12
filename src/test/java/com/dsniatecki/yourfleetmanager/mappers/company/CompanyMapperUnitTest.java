@@ -14,6 +14,7 @@ class CompanyMapperUnitTest {
     @Test
     @DisplayName("mapping Company to CompanyBasicDTO")
     void CompanyToCompanyBasicDTOMapperTest() {
+
         Company company = new Company();
         company.setId(1L);
         company.setName("company");
@@ -24,6 +25,7 @@ class CompanyMapperUnitTest {
         company.getContactDetails().setTelephoneNumber("563 231 321");
 
         CompanyBasicDTO companyBasicDTO = CompanyMapper.INSTANCE.companyToCompanyBasicDTO(company);
+
         Assertions.assertEquals(companyBasicDTO.getId(), company.getId());
         Assertions.assertEquals(companyBasicDTO.getName(), company.getName());
         Assertions.assertEquals(companyBasicDTO.getAddress().getId(), company.getAddress().getId());
@@ -35,6 +37,7 @@ class CompanyMapperUnitTest {
     @Test
     @DisplayName("mapping Company to CompanyListElementDTO")
     void CompanyToCompanyListElementDTO() {
+
         Company company = new Company();
         company.setId(1L);
         company.setName("company");
@@ -45,6 +48,7 @@ class CompanyMapperUnitTest {
         company.getContactDetails().setTelephoneNumber("563 231 321");
 
         CompanyListElementDTO companyListElementDTO = CompanyMapper.INSTANCE.companyToCompanyListElementDTO(company);
+
         Assertions.assertEquals(companyListElementDTO.getId(), company.getId());
         Assertions.assertEquals(companyListElementDTO.getName(), company.getName());
         Assertions.assertEquals(companyListElementDTO.getCountry(), company.getAddress().getCountry());
@@ -54,6 +58,7 @@ class CompanyMapperUnitTest {
     @Test
     @DisplayName("mapping CompanyBasicDTO to Company")
     void CompanyBasicDTOToCopmanyTest() {
+
         CompanyBasicDTO companyBasicDTO = new CompanyBasicDTO();
         companyBasicDTO.setId(20L);
         companyBasicDTO.setName("FunnyCompany");

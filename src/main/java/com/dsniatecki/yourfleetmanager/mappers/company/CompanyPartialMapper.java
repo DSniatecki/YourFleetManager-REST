@@ -14,6 +14,7 @@ public class CompanyPartialMapper {
             company.setName(companyBasicDTO.getName());
         }
         if(companyBasicDTO.getAddress()!=null){
+
             if(companyBasicDTO.getAddress().getId()!=null){
                 company.getAddress().setId(companyBasicDTO.getAddress().getId());
             }

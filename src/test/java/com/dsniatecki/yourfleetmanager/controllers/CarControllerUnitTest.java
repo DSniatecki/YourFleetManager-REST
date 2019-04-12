@@ -36,6 +36,7 @@ class CarControllerUnitTest {
     @Test
     @DisplayName("Test: getByIdTest() - Success")
     void getByIdTest() throws Exception{
+
         CarDTO car = generateCarDTO();
 
         doReturn(car).when(carService).getById(any());
@@ -48,14 +49,15 @@ class CarControllerUnitTest {
                 .andExpect( jsonPath("$.productionYear").value(car.getProductionYear()))
                 .andExpect( jsonPath("$.vehicleResponder.id").value(car.getVehicleResponder().getId()))
                 .andExpect(jsonPath("$.vehicleResponder.firstName")
-                        .value(car.getVehicleResponder().getFirstName()))
+                                .value(car.getVehicleResponder().getFirstName()))
                 .andExpect( jsonPath("$.vehicleResponder.contactDetails.id")
-                        .value(car.getVehicleResponder().getContactDetails().getId()));
+                                .value(car.getVehicleResponder().getContactDetails().getId()));
     }
 
     @Test
     @DisplayName("Test: deleteById() - Success")
     void deleteByIdTest() throws Exception{
+
         mockMvc.perform(delete("/v1/companies/{companyId}/departments/{depId}/cars/{id}", 1L, 1L,1L))
                 .andExpect(status().isOk());
     }
@@ -79,20 +81,20 @@ class CarControllerUnitTest {
                 .andExpect( jsonPath("$.brand").value(returnedCarDTO.getBrand()))
                 .andExpect( jsonPath("$.model").value(returnedCarDTO.getModel()))
                 .andExpect( jsonPath("$.productionYear").value(returnedCarDTO.getProductionYear()))
-                .andExpect( jsonPath("$.vehicleResponder.id").value(returnedCarDTO.getVehicleResponder().getId()))
+                .andExpect( jsonPath("$.vehicleResponder.id")
+                                .value(returnedCarDTO.getVehicleResponder().getId()))
                 .andExpect( jsonPath("$.vehicleResponder.firstName")
-                        .value(returnedCarDTO.getVehicleResponder().getFirstName()))
+                                .value(returnedCarDTO.getVehicleResponder().getFirstName()))
                 .andExpect( jsonPath("$.vehicleResponder.contactDetails.id")
-                        .value(returnedCarDTO.getVehicleResponder().getContactDetails().getId()))
+                                .value(returnedCarDTO.getVehicleResponder().getContactDetails().getId()))
                 .andExpect( jsonPath("$.vehicleResponder.contactDetails.telephoneNumber")
-                        .value(returnedCarDTO.getVehicleResponder().getContactDetails().getTelephoneNumber()));
+                                .value(returnedCarDTO.getVehicleResponder().getContactDetails().getTelephoneNumber()));
 
 
     }
     @Test
     @DisplayName("Test: updatePartial() - Success")
     void updatePartial() throws Exception{
-
 
         CarDTO postCarDTO = generateCarDTO();
         postCarDTO.setBrand("JAVA");
@@ -111,13 +113,14 @@ class CarControllerUnitTest {
                 .andExpect( jsonPath("$.brand").value(returnedCarDTO.getBrand()))
                 .andExpect( jsonPath("$.model").value(returnedCarDTO.getModel()))
                 .andExpect( jsonPath("$.productionYear").value(returnedCarDTO.getProductionYear()))
-                .andExpect( jsonPath("$.vehicleResponder.id").value(returnedCarDTO.getVehicleResponder().getId()))
+                .andExpect( jsonPath("$.vehicleResponder.id")
+                                .value(returnedCarDTO.getVehicleResponder().getId()))
                 .andExpect( jsonPath("$.vehicleResponder.firstName")
-                        .value(returnedCarDTO.getVehicleResponder().getFirstName()))
+                                .value(returnedCarDTO.getVehicleResponder().getFirstName()))
                 .andExpect( jsonPath("$.vehicleResponder.contactDetails.id")
-                        .value(returnedCarDTO.getVehicleResponder().getContactDetails().getId()))
+                                .value(returnedCarDTO.getVehicleResponder().getContactDetails().getId()))
                 .andExpect( jsonPath("$.vehicleResponder.contactDetails.telephoneNumber")
-                        .value(returnedCarDTO.getVehicleResponder().getContactDetails().getTelephoneNumber()));
+                                .value(returnedCarDTO.getVehicleResponder().getContactDetails().getTelephoneNumber()));
 
 
     }
@@ -125,10 +128,9 @@ class CarControllerUnitTest {
     private String convertToJson(Object object){
         try {
             return new ObjectMapper().writeValueAsString(object);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (Exception exc) {
+            throw new RuntimeException(exc);
         }
-
     }
 
     private CarDTO generateCarDTO(){

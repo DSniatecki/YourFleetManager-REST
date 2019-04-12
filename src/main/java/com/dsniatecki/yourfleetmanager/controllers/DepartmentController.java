@@ -48,8 +48,8 @@ class DepartmentController {
 
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public DepartmentBasicDTO updatePartialy(@RequestBody DepartmentBasicDTO departmentBasicDTO,
-                                             @PathVariable String id){
+    public DepartmentBasicDTO updatePartially(@RequestBody DepartmentBasicDTO departmentBasicDTO,
+                                              @PathVariable String id){
         return departmentService.updatePartial(departmentBasicDTO, Long.valueOf(id));
     }
 }

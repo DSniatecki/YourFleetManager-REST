@@ -12,6 +12,7 @@ public class CompanyPartialMapperUnitTest {
     @Test
     @DisplayName("test: updateCompanyWithCompanyBasicDTO() - ")
     void updateCompanyWithCompanyBasicDTOTest() {
+
         CompanyBasicDTO companyBasicDTO = new CompanyBasicDTO();
         companyBasicDTO.setId(20L);
         companyBasicDTO.setName("FunnyCompany");

@@ -13,5 +13,4 @@ public class CarBasicDTO {
     private Integer productionYear;
     private String registrationNumber;
 
-
 }

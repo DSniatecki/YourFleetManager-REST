@@ -5,6 +5,7 @@ import com.dsniatecki.yourfleetmanager.entities.Department;
 import com.dsniatecki.yourfleetmanager.mappers.contactdetails.ContactDetailsPartialMapper;
 
 public class DepartmentPartialMapper {
+
     public static void departmentBasicDTOToDepartment(DepartmentBasicDTO departmentBasicDTO, Department department){
 
         if(departmentBasicDTO.getName()!=null){
@@ -17,4 +18,5 @@ public class DepartmentPartialMapper {
         ContactDetailsPartialMapper.ContactDetailsDTOToContactDetails(
                 departmentBasicDTO.getContactDetails(), department.getContactDetails());
     }
+
 }

@@ -16,15 +16,16 @@ import org.junit.jupiter.api.Test;
     @Test
     @DisplayName("test: departmentBasicDTOToDepartment() - Success")
     void departmentBasicDTOToDepartment(){
+
         Department department = new Department();
         department.setId(15L);
         department.setName("FunnyDepartment");
         department.getContactDetails().setId(20L);
         department.getContactDetails().setEmailAddress("funnyemail@email.com");
         department.getContactDetails().setTelephoneNumber("563-432-342");
-            Car car = new Car();
-            car.setId(45L);
-            car.setBrand("FunnyCar");
+        Car car = new Car();
+        car.setId(45L);
+        car.setBrand("FunnyCar");
         department.addCar(car);
 
         DepartmentBasicDTO departmentBasicDTO = new DepartmentBasicDTO();
@@ -37,17 +38,12 @@ import org.junit.jupiter.api.Test;
         Assertions.assertSame(department.getId(), 15L);
         Assertions.assertSame(department.getCars().get(0).getId(), 45L);
         Assertions.assertEquals(department.getCars().get(0).getBrand(), "FunnyCar");
-
         Assertions.assertEquals(department.getName(), departmentBasicDTO.getName());
         Assertions.assertEquals(department.getContactDetails().getEmailAddress(),
-                departmentBasicDTO.getContactDetails().getEmailAddress());
+                                    departmentBasicDTO.getContactDetails().getEmailAddress());
         Assertions.assertEquals(department.getContactDetails().getTelephoneNumber(),
-                departmentBasicDTO.getContactDetails().getTelephoneNumber()
+                                    departmentBasicDTO.getContactDetails().getTelephoneNumber()
         );
-
-
-
-
     }
 
 }

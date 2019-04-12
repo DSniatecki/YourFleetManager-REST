@@ -52,4 +52,5 @@ public class Company {
         this.contactDetails = contactDetails;
         this.address = address;
     }
+
 }

@@ -23,13 +23,11 @@ class CarServiceImpl implements CarService{
         this.departmentRepository = departmentRepository;
     }
 
-
     @Override
     public CarDTO getById(Long id) {
         Optional<Car> carOptional = carRepository.findById(id);
         checkIsNotPresent(carOptional, id);
         return CarMapper.INSTANCE.carToCarDTO(carOptional.get());
-
     }
 
     @Override
@@ -56,13 +54,10 @@ class CarServiceImpl implements CarService{
         return CarMapper.INSTANCE.carToCarDTO(carRepository.save(car));
     }
 
-
-
     private void checkIsNotPresent(Optional<Car> optional, Long id){
         if(!optional.isPresent()){
             throw new ResourceNotFoundException("Car[id:" + id +"] was not found.");
         }
     }
-
 
 }

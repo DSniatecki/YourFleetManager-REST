@@ -69,4 +69,5 @@ public class DepartmentServiceImpl implements DepartmentService {
             throw new ResourceNotFoundException("Department[id:" + id +"] was not found.");
         }
     }
+
 }
