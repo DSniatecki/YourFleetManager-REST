@@ -11,8 +11,12 @@ public class CarDTO {
     private Long id;
     private String brand;
     private String model;
-    private int productionYear;
+    private Integer productionYear;
     private String registrationNumber;
     private VehicleResponderDTO vehicleResponder;
+
+    public CarDTO(){
+        this.vehicleResponder = new VehicleResponderDTO();
+    }
 
 }

@@ -26,8 +26,7 @@ class DepartmentController {
 
     @GetMapping("/{id}/cars")
     @ResponseStatus(HttpStatus.OK)
-    public DepartmentDTO getWithCarsById(@PathVariable String id){
-        return departmentService.getWithCarsById(Long.valueOf(id));
+    public DepartmentDTO getWithCarsById(@PathVariable String id){ return departmentService.getWithCarsById(Long.valueOf(id));
     }
 
     @DeleteMapping("/{id}")
@@ -50,4 +49,3 @@ class DepartmentController {
         return departmentService.updatePartial(departmentBasicDTO, Long.valueOf(id));
     }
 }
-//

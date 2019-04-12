@@ -2,6 +2,7 @@ package com.dsniatecki.yourfleetmanager.mappers.company;
 
 import com.dsniatecki.yourfleetmanager.dto.company.CompanyBasicDTO;
 import com.dsniatecki.yourfleetmanager.entities.Company;
+import com.dsniatecki.yourfleetmanager.mappers.contactdetails.ContactDetailsPartialMapper;
 
 public class CompanyPartialMapper {
 
@@ -32,18 +33,8 @@ public class CompanyPartialMapper {
                 company.getAddress().setCountry(companyBasicDTO.getAddress().getCountry());
             }
         }
-        if(companyBasicDTO.getContactDetails()!=null){
-
-            if(companyBasicDTO.getContactDetails().getId()!=null){
-                company.getContactDetails().setId(companyBasicDTO.getContactDetails().getId());
-            }
-            if(companyBasicDTO.getContactDetails().getTelephoneNumber()!=null){
-                company.getContactDetails().setTelephoneNumber(companyBasicDTO.getContactDetails().getTelephoneNumber());
-            }
-            if(companyBasicDTO.getContactDetails().getEmailAddress()!=null){
-                company.getContactDetails().setEmailAddress(companyBasicDTO.getContactDetails().getEmailAddress());
-            }
-        }
+        ContactDetailsPartialMapper.ContactDetailsDTOToContactDetails(
+                companyBasicDTO.getContactDetails(), company.getContactDetails());
     }
 
 }

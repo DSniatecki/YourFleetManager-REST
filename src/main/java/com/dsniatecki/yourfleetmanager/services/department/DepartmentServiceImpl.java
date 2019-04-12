@@ -41,7 +41,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public DepartmentBasicDTO saveWithCompany(DepartmentBasicDTO departmentBasicDTO, Long companyId) {
         Optional<Company> companyOptional = companyRepository.findById(companyId);
-        if(!companyOptional.isPresent()) throw new ResourceNotFoundException("Company[id:" + companyId +"] was not found.");
+        if(!companyOptional.isPresent())
+                throw new ResourceNotFoundException("Company[id:" + companyId +"] was not found.");
         Department department = DepartmentMapper.INSTANCE.departmentBasicDTOToDepartment(departmentBasicDTO);
         department.setCompany(companyOptional.get());
         return DepartmentMapper.INSTANCE.departmentToDepartmentBasicDTO(departmentRepository.save(department));
