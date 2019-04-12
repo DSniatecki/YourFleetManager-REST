@@ -10,4 +10,9 @@ public class DepartmentBasicDTO {
     private Long id;
     private String name;
     private ContactDetailsDTO contactDetails;
+
+    public DepartmentBasicDTO(){
+        this.contactDetails = new ContactDetailsDTO();
+    }
+
 }

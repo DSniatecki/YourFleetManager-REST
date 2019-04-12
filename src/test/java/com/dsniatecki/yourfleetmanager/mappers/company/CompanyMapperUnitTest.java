@@ -1,8 +1,9 @@
-package com.dsniatecki.yourfleetmanager.mappers;
+package com.dsniatecki.yourfleetmanager.mappers.company;
 
 import com.dsniatecki.yourfleetmanager.dto.company.CompanyBasicDTO;
 import com.dsniatecki.yourfleetmanager.dto.company.CompanyListElementDTO;
 import com.dsniatecki.yourfleetmanager.entities.Company;
+import com.dsniatecki.yourfleetmanager.mappers.company.CompanyMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

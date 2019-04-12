@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -30,10 +32,10 @@ public class Company {
     private Address address;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "company", cascade = CascadeType.ALL)
-    private Set<Department> departments;
+    private List<Department> departments;
 
     public void addDepartment(Department department){
-        if(this.departments == null) this.departments = new HashSet<>();
+        if(this.departments == null) this.departments = new ArrayList<>();
         department.setCompany(this);
         this.departments.add(department);
     }

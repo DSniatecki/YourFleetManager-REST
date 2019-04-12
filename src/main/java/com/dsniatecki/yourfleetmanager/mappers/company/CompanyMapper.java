@@ -1,4 +1,4 @@
-package com.dsniatecki.yourfleetmanager.mappers;
+package com.dsniatecki.yourfleetmanager.mappers.company;
 
 import com.dsniatecki.yourfleetmanager.dto.company.CompanyBasicDTO;
 import com.dsniatecki.yourfleetmanager.dto.company.CompanyDepartmentsDTO;

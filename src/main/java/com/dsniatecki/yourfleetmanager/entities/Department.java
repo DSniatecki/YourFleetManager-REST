@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,10 +31,10 @@ public class Department {
     private Company company;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = CascadeType.ALL)
-    private Set<Car> cars;
+    private List<Car> cars;
 
     public void addCar(Car car){
-        if(this.cars == null) this.cars = new HashSet<>();
+        if(this.cars == null) this.cars = new ArrayList<>();
         car.setDepartment(this);
         this.cars.add(car);
     }

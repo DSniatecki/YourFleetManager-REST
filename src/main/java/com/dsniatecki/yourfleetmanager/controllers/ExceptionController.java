@@ -18,8 +18,8 @@ import java.util.Date;
 @Slf4j
 @RestController
 @ControllerAdvice
-public class ExceptionController extends ResponseEntityExceptionHandler {
-    
+class ExceptionController extends ResponseEntityExceptionHandler {
+
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Object> handleResourceNotFoundException(
             ResourceNotFoundException exception, WebRequest webRequest){

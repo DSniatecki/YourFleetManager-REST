@@ -1,6 +1,5 @@
 package com.dsniatecki.yourfleetmanager.repositories;
 
-
 import com.dsniatecki.yourfleetmanager.entities.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 
