@@ -1,14 +1,17 @@
-package com.dsniatecki.yourfleetmanager.services;
+package com.dsniatecki.yourfleetmanager.services.company;
 
 import com.dsniatecki.yourfleetmanager.dto.company.CompanyBasicDTO;
 import com.dsniatecki.yourfleetmanager.dto.company.CompanyDepartmentsDTO;
 import com.dsniatecki.yourfleetmanager.dto.company.CompanyListElementDTO;
 import com.dsniatecki.yourfleetmanager.entities.Company;
 import com.dsniatecki.yourfleetmanager.exceptions.ResourceNotFoundException;
-import com.dsniatecki.yourfleetmanager.mappers.CompanyMapper;
-import com.dsniatecki.yourfleetmanager.mappers.CompanyPartialMapper;
+import com.dsniatecki.yourfleetmanager.mappers.company.CompanyMapper;
+import com.dsniatecki.yourfleetmanager.mappers.company.CompanyPartialMapper;
 import com.dsniatecki.yourfleetmanager.repositories.CompanyRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +26,6 @@ public class CompanyServiceImpl implements CompanyService {
         this.companyRepository = companyRepository;
     }
 
-
     @Override
     public CompanyBasicDTO getBasicById(Long id){
         Optional<Company> companyOptional =  companyRepository.findById(id);
@@ -32,6 +34,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
+    @Transactional
     public CompanyDepartmentsDTO getWithDepartments(Long id) {
         Optional<Company> companyOptional =  companyRepository.findById(id);
         checkIsNotPresent(companyOptional, id);
@@ -44,8 +47,13 @@ public class CompanyServiceImpl implements CompanyService {
         List<CompanyListElementDTO> listCompanies = new ArrayList<>();
         companies.forEach(company ->
                 listCompanies.add(CompanyMapper.INSTANCE.companyToCompanyListElementDTO(company)));
-
         return listCompanies;
+    }
+
+    @Override
+    public Page<CompanyListElementDTO> getPageOfListElements(Pageable pageable) {
+        Page<Company> companiesPage = companyRepository.findAll(pageable);
+        return companiesPage.map((CompanyMapper.INSTANCE::companyToCompanyListElementDTO));
     }
 
     @Override
@@ -65,15 +73,15 @@ public class CompanyServiceImpl implements CompanyService {
         Optional<Company> companyOptional =  companyRepository.findById(id);
         checkIsNotPresent(companyOptional, id);
         Company company = companyOptional.get();
-        CompanyPartialMapper.CompanyBasicDTOToCopmany(companyBasicDTO, company);
+        CompanyPartialMapper.companyBasicDTOToCopmany(companyBasicDTO, company);
         return CompanyMapper.INSTANCE.companyToCompanyBasicDTO(companyRepository.save(company));
     }
 
 
-     void checkIsNotPresent(Optional<Company> optional, Long id){
+     private void checkIsNotPresent(Optional<Company> optional, Long id){
         if(!optional.isPresent()){
             throw new ResourceNotFoundException("Company[id:" + id +"] was not found.");
         }
-    }
+     }
 
 }

@@ -1,11 +1,12 @@
-package com.dsniatecki.yourfleetmanager.mappers;
+package com.dsniatecki.yourfleetmanager.mappers.company;
 
 import com.dsniatecki.yourfleetmanager.dto.company.CompanyBasicDTO;
 import com.dsniatecki.yourfleetmanager.entities.Company;
+import com.dsniatecki.yourfleetmanager.mappers.contactdetails.ContactDetailsPartialMapper;
 
 public class CompanyPartialMapper {
 
-    public static void CompanyBasicDTOToCopmany(CompanyBasicDTO companyBasicDTO, Company company){
+    public static void companyBasicDTOToCopmany(CompanyBasicDTO companyBasicDTO, Company company){
         if(companyBasicDTO.getId()!=null){
             company.setId(companyBasicDTO.getId());
         }
@@ -13,6 +14,7 @@ public class CompanyPartialMapper {
             company.setName(companyBasicDTO.getName());
         }
         if(companyBasicDTO.getAddress()!=null){
+
             if(companyBasicDTO.getAddress().getId()!=null){
                 company.getAddress().setId(companyBasicDTO.getAddress().getId());
             }
@@ -32,18 +34,8 @@ public class CompanyPartialMapper {
                 company.getAddress().setCountry(companyBasicDTO.getAddress().getCountry());
             }
         }
-        if(companyBasicDTO.getContactDetails()!=null){
-
-            if(companyBasicDTO.getContactDetails().getId()!=null){
-                company.getContactDetails().setId(companyBasicDTO.getContactDetails().getId());
-            }
-            if(companyBasicDTO.getContactDetails().getEmailAddress()!=null){
-                company.getContactDetails().setEmailAddress(companyBasicDTO.getContactDetails().getEmailAddress());
-            }
-            if(companyBasicDTO.getContactDetails().getId()!=null){
-                company.getContactDetails().setTelephoneNumber(companyBasicDTO.getContactDetails().getTelephoneNumber());
-            }
-        }
+        ContactDetailsPartialMapper.ContactDetailsDTOToContactDetails(
+                companyBasicDTO.getContactDetails(), company.getContactDetails());
     }
 
 }

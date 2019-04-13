@@ -3,15 +3,23 @@ package com.dsniatecki.yourfleetmanager.controllers;
 import com.dsniatecki.yourfleetmanager.dto.company.CompanyBasicDTO;
 import com.dsniatecki.yourfleetmanager.dto.company.CompanyDepartmentsDTO;
 import com.dsniatecki.yourfleetmanager.dto.company.CompanyListElementDTO;
-import com.dsniatecki.yourfleetmanager.services.CompanyService;
+import com.dsniatecki.yourfleetmanager.services.company.CompanyService;
+import io.swagger.annotations.Api;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1/companies")
+@Api(description="controller responsible for operations on the company object")
 class CompanyController {
+
+    private static final int DEFAULT_PAGE_SIZE=20;
 
     private CompanyService companyService;
 
@@ -32,6 +40,21 @@ class CompanyController {
         return companyService.getWithDepartments(Long.valueOf(companyId));
     }
 
+    @GetMapping("/")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<CompanyListElementDTO> retrivePage(@RequestParam("page") Optional<Integer> page,
+                                                   @RequestParam("size") Optional<Integer> size,
+                                                   @RequestParam("order") Optional<String> order,
+                                                   @RequestParam("direction") Optional<String> direction){
+        PageRequest pageRequest = PageRequest.of(
+                   page.orElse(1) -1,
+                        size.orElse(DEFAULT_PAGE_SIZE),
+                        Sort.Direction.fromString(direction.orElse("ASC")),
+                        order.orElse("name"));
+
+        return companyService.getPageOfListElements(pageRequest);
+    }
+
     @GetMapping("/list")
     @ResponseStatus(HttpStatus.OK)
     public List<CompanyListElementDTO> retriveList(){
@@ -50,19 +73,10 @@ class CompanyController {
         return companyService.saveBasic(companyBasicDTO);
     }
 
-    @PutMapping("/{companyId}")
-    @ResponseStatus(HttpStatus.OK)
-    public CompanyBasicDTO updateWhole(@RequestBody CompanyBasicDTO companyBasicDTO, @PathVariable String companyId){
-        return companyService.saveBasic(companyBasicDTO);
-    }
-
-
     @PatchMapping("/{companyId}")
     @ResponseStatus(value = HttpStatus.OK)
     public CompanyBasicDTO updatePartialy(@RequestBody CompanyBasicDTO companyBasicDTO, @PathVariable String companyId){
         return companyService.updatePartial(companyBasicDTO, Long.valueOf(companyId) );
     }
-
-
 
 }

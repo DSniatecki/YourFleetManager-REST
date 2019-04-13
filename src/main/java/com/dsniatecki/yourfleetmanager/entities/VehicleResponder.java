@@ -27,7 +27,7 @@ public class VehicleResponder {
     @JoinColumn(name="contact_details_id")
     private ContactDetails contactDetails;
 
-    VehicleResponder() {
+    public VehicleResponder() {
         this.contactDetails = new ContactDetails();
     }
 

@@ -12,4 +12,9 @@ public class VehicleResponderDTO {
     private String firstName;
     private String lastName;
     private ContactDetailsDTO contactDetails;
+
+    public VehicleResponderDTO(){
+        this.contactDetails = new ContactDetailsDTO();
+    }
+
 }

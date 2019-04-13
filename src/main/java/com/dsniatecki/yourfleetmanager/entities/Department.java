@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,7 +21,6 @@ public class Department {
     @Column(name = "c_d_name")
     private String name;
 
-
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="contact_details_id")
     private ContactDetails contactDetails;
@@ -31,10 +30,10 @@ public class Department {
     private Company company;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = CascadeType.ALL)
-    private Set<Car> cars;
+    private List<Car> cars;
 
     public void addCar(Car car){
-        if(this.cars == null) this.cars = new HashSet<>();
+        if(this.cars == null) this.cars = new ArrayList<>();
         car.setDepartment(this);
         this.cars.add(car);
     }
@@ -48,4 +47,5 @@ public class Department {
         this.contactDetails = contactDetails;
         this.company = company;
     }
+
 }

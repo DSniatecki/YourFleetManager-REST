@@ -1,4 +1,4 @@
-package com.dsniatecki.yourfleetmanager.mappers;
+package com.dsniatecki.yourfleetmanager.mappers.company;
 
 import com.dsniatecki.yourfleetmanager.dto.company.CompanyBasicDTO;
 import com.dsniatecki.yourfleetmanager.entities.Company;
@@ -6,11 +6,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("CompanyPartialMapper - Unit Tests")
 public class CompanyPartialMapperUnitTest {
 
     @Test
-    @DisplayName("updating company with CompanyCompanyBasicDTO")
+    @DisplayName("test: updateCompanyWithCompanyBasicDTO() - ")
     void updateCompanyWithCompanyBasicDTOTest() {
+
         CompanyBasicDTO companyBasicDTO = new CompanyBasicDTO();
         companyBasicDTO.setId(20L);
         companyBasicDTO.setName("FunnyCompany");
@@ -25,7 +27,7 @@ public class CompanyPartialMapperUnitTest {
         company.getContactDetails().setId(15L);
         company.getContactDetails().setTelephoneNumber("563 231 321");
 
-        CompanyPartialMapper.CompanyBasicDTOToCopmany(companyBasicDTO, company);
+        CompanyPartialMapper.companyBasicDTOToCopmany(companyBasicDTO, company);
 
         Assertions.assertSame(company.getId(), companyBasicDTO.getId());
         Assertions.assertEquals(company.getName(), companyBasicDTO.getName());

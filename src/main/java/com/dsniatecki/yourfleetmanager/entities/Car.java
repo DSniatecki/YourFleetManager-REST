@@ -23,7 +23,7 @@ public class Car {
     private String model;
 
     @Column(name = "production_year")
-    private int productionYear;
+    private Integer productionYear;
 
     @Column(name = "registration_number")
     private String registrationNumber;
@@ -31,7 +31,6 @@ public class Car {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="company_department_id")
     private Department department;
-
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="vehicle_responder_id")
@@ -41,11 +40,12 @@ public class Car {
         this.vehicleResponder = new VehicleResponder();
     }
 
-    public Car(String brand, String model, int productionYear, String registrationNumber, VehicleResponder vehicleResponder) {
+    public Car(String brand, String model, Integer productionYear, String registrationNumber, VehicleResponder vehicleResponder) {
         this.brand = brand;
         this.model = model;
         this.productionYear = productionYear;
         this.registrationNumber = registrationNumber;
         this.vehicleResponder = vehicleResponder;
     }
+
 }
