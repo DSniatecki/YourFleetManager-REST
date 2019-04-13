@@ -11,7 +11,7 @@ The application was created in only two days.
      - Lombok
      - MapStruct
      
- # - Testing :    
+ # - Tests :    
      - JUnit5
      - Mockito2
      
