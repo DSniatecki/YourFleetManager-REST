@@ -1,9 +1,10 @@
-### YourFleetManager V2 REST
+# YourFleetManager V2 REST
 REST web service designed to manage a fleet of company vehicles. [ improved, REST version of YourFleetManger ]
-The application was created in only two days.
+
+First version of this project : https://github.com/DSniatecki/YourFleetManager
 
 ## technology used :
- # - Backend :
+ ## - Backend :
      - Spring Boot
      - Spring MVC
      - Spring Data JPA
@@ -11,19 +12,19 @@ The application was created in only two days.
      - Lombok
      - MapStruct
      
- # - Tests :    
+ ## - Tests :    
      - JUnit5
      - Mockito2
      
- # - Databases : 
+ ## - Databases : 
      - H2 [ embedded ]
      - MySQL
      - PostgreSQl
      
- # - Documentation : 
+ ## - Documentation : 
      - Swagger2
 
- # Launching instruction :
+ ## Launching instruction :
 
   1.  Download 
   2.  Unzip 
