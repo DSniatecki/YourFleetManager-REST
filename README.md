@@ -1,7 +1,7 @@
-# YourFleetManager V2 REST
-REST web service designed to manage a fleet of company vehicles. [ improved, REST version of YourFleetManger ]
+# YourFleetManager
+RESTful web service designed to manage a fleet of company vehicles. 
 
-First version of this project : https://github.com/DSniatecki/YourFleetManager
+First version of this project: https://github.com/DSniatecki/YourFleetManager-Thymleaf
 
 ## technology used :
  ## - Backend :
