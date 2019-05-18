@@ -1,8 +1,8 @@
 # YourFleetManager
 RESTful web service designed to manage a fleet of company vehicles. 
 
-The second version of this project created with Thymeleaf: 
- - https://github.com/DSniatecki/YourFleetManager-Thymleaf
+The first version of this project created with Thymeleaf: 
+ - https://github.com/DSniatecki/YourFleetManager
 
 ## technology used :
  ## - Backend :
